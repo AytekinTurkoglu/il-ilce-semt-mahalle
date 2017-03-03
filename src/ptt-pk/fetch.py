@@ -1,19 +1,19 @@
 import pymysql.cursors
 from openpyxl import load_workbook
-from slugify import slugify
 
 connection = pymysql.connect(host='localhost',
                              user='root',
-                             password='11/*aa',
-                             db='pttpk',
-                             charset='utf8mb4',
+                             password='',
+                             db='deneme',
+                             charset='utf8',
                              cursorclass=pymysql.cursors.DictCursor)
 cursor = connection.cursor()
 
 try:
-    wb = load_workbook('data/pk_list_29.04.2016.xlsx')
+    wb = load_workbook('data/pk_list_14.02.2017.xlsx')
     ws = wb.active
-
+	
+    lower_map = { ord(u'I'): u'ı' }
     regions = {}
     for index, row in enumerate(ws.rows):
         if index == 0:
@@ -38,48 +38,44 @@ try:
 
         regions[city][district][neighborhood][part] = postal_code
 
-    for city in regions.iterkeys():
-        city_name = city.title()
-        city_slug = slugify(city_name)
+    for city in regions.keys():
+        city_name = city.translate(lower_map).title()
 
         with connection.cursor() as cursor:
-            sql = "INSERT INTO `city` (`name`, `slug`) VALUES (%s, %s);"
-            cursor.execute(sql, (city_name, city_slug))
+            sql = "INSERT INTO `iller` (`il_adi`) VALUES (%s);"
+            cursor.execute(sql, (city_name))
             connection.commit()
             city_id = cursor.lastrowid
 
-            for district in regions[city].iterkeys():
-                district_name = district.title()
-                district_slug = slugify(district_name)
+            for district in regions[city].keys():
+                district_name = district.translate(lower_map).title()
 
                 with connection.cursor() as cursor:
-                    sql = "INSERT INTO `district` (`city_id`, `name`, `slug`) VALUES (%s, %s, %s);"
-                    cursor.execute(sql, (city_id, district_name, district_slug))
+                    sql = "INSERT INTO `ilceler` (`il_id`, `ilce_adi`) VALUES (%s, %s);"
+                    cursor.execute(sql, (city_id, district_name))
                     connection.commit()
                     district_id = cursor.lastrowid
 
-                    for neighborhood in regions[city][district].iterkeys():
-                        neighborhood_name = neighborhood.title()
-                        neighborhood_slug = slugify(neighborhood_name)
+                    for neighborhood in regions[city][district].keys():
+                        neighborhood_name = neighborhood.translate(lower_map).title()
 
                         with connection.cursor() as cursor:
-                            sql = "INSERT INTO `neighborhood` (`district_id`, `name`, `slug`) VALUES (%s, %s, %s);"
-                            cursor.execute(sql, (district_id, neighborhood_name, neighborhood_slug))
+                            sql = "INSERT INTO `semtler` (`ilce_id`, `semt_adi`) VALUES (%s, %s);"
+                            cursor.execute(sql, (district_id, neighborhood_name))
                             connection.commit()
                             neighborhood_id = cursor.lastrowid
 
-                            for part in regions[city][district][neighborhood].iterkeys():
-                                part_name = part.title()
-                                part_slug = slugify(part_name)
+                            for part in regions[city][district][neighborhood].keys():
+                                part_name = part.translate(lower_map).title()
 
                                 with connection.cursor() as cursor:
-                                    sql = "INSERT INTO `part` (`neighborhood_id`, `name`, `slug`, `postal_code`) VALUES (%s, %s, %s, %s);"
-                                    cursor.execute(sql, (neighborhood_id, part_name, part_slug, regions[city][district][neighborhood][part]))
+                                    sql = "INSERT INTO `mahalleler` (`semt_id`, `mahalle_adi`, `posta_kodu`) VALUES (%s, %s, %s);"
+                                    cursor.execute(sql, (neighborhood_id, part_name, regions[city][district][neighborhood][part]))
                                     connection.commit()
                                     part_id = cursor.lastrowid
                                     postal_code = regions[city][district][neighborhood][part]
 
-                                    print city_name + ' / ' + district_name + ' / ' + neighborhood_name + ' / ' + part_name + ' - ' + str(postal_code)
+                                    print(city_name + ' / ' + district_name + ' / ' + neighborhood_name + ' / ' + part_name + ' - ' + str(postal_code))
 
 finally:
     connection.close()
