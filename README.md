@@ -1,9 +1,9 @@
 ## Ptt İl, ilçe, semt, mahalle Veritabanı
 
-Öncelikle güncel <b>xlsx</b> datasını http://postakodu.ptt.gov.tr/ bu adresten indirin.
+Öncelikle güncel <b>xlsx</b> datasını <a href="http://postakodu.ptt.gov.tr/" target="_blank">http://postakodu.ptt.gov.tr/</a> bu adresten indirin.
 
 #### Python 3.6.0 Kurulum
- - https://www.python.org/downloads/ bu adresten <b>Python 3.6.0</b> sürümünü indirin. Kurulum dosyasını çalıştırdığınızda açılan sayfada alt kısımda path yoluna ekle kısmına tick atıp öyle kurulum yapın.
+ - <a href="https://www.python.org/downloads/" target="_blank">https://www.python.org/downloads/</a> bu adresten <b>Python 3.6.0</b> sürümünü indirin. Kurulum dosyasını çalıştırdığınızda açılan sayfada alt kısımda path yoluna ekle kısmına tick atıp öyle kurulum yapın.
  
  
 #### MySQL Veritabanı Ayarları
