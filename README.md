@@ -7,7 +7,7 @@
  
  
 #### MySQL Veritabanı Ayarları
- - Bir veritabanı oluşturup içine <b>sablon.sql</b> dosyasını aktarın.
+ - Bir veritabanı oluşturup içine <b>data/</b> dizini altındaki <b>sablon.sql</b> dosyasını aktarın.
  - <b>src/ptt-pk/</b> dizini altındaki <b>fetch.py</b> dosyasını açın. <b>Connection</b> kısmını ve <b>data/</b> dizini altındaki <b>xlsx</b> dosyasının ismini doğru şekilde ayarlayın.
  
 #### Console Ayarları
