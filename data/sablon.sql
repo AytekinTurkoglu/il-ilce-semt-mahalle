@@ -52,7 +52,7 @@ CREATE TABLE `iller` (
 CREATE TABLE `mahalleler` (
   `id` int(10) UNSIGNED NOT NULL,
   `semt_id` int(11) NOT NULL,
-  `mahalle_adi` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `mahalle_adi` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   `posta_kodu` varchar(5) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
