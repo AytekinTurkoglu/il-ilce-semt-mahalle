@@ -33,4 +33,4 @@ python src/ptt-pk/fetch.py
 
 #### Dipnot
 
-- Eğer <b>14.02.2017</b> tarihli veriler yeterli derseniz <b>14_02_2017 Aktarilmis.sql</b> dosyasını veritabanı oluşturup aktarabilirsiniz.
+-  Sonu <b>Aktarilmis.sql</b> ile biten dosyalardan istediğiniz birini veritabanı oluşturup aktarabilirsiniz.
