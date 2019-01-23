@@ -33,7 +33,7 @@ python src/ptt-pk/fetch.py
 
 #### Dipnot
 
--  Sonu <b>Aktarilmis.sql</b> ile biten dosyalardan istediğiniz birini veritabanı oluşturup aktarabilirsiniz.
+- <b>Aktarilmis Sql Dosyalari</b> dizini altından istediğiniz sql dosyasını veritabanı oluşturup aktarabilirsiniz.
 
 ##### Aktardıktan sonra aşağıdaki sql komutlarını çalıştır:
 
