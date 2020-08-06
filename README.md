@@ -1,4 +1,13 @@
-## Ptt İl, ilçe, semt, mahalle Veritabanı
+## Ptt il, ilçe, mahalle veritabanı
+
+### Fork'taki düzenlemeler
+
+- "semtler" tablosu çıkarıldı. Kodlar; il, ilçe ve mahalle bilgilerinin aktarımı için düzenlendi.
+- Tablo adları İngilizce karşılıklarına göre düzenlendi. (City, District, Neighborhood)
+- İl id'leri, il plaka koduna göre düzenlendi. (bkz. match.py)
+- "i" karakteri sorunu kod tarafında çözüldü.
+
+<hr>
 
 Öncelikle güncel <b>xlsx</b> datasını http://postakodu.ptt.gov.tr/ bu adresten indirin.
 
@@ -35,13 +44,3 @@ python src/ptt-pk/fetch.py
 
 - <b>Aktarilmis Sql Dosyalari</b> dizini altından istediğiniz sql dosyasını veritabanı oluşturup aktarabilirsiniz.
 
-##### Aktardıktan sonra aşağıdaki sql komutlarını çalıştır:
-
-```
-update iller set il_adi = replace(il_adi, 'i̇', 'i');
-update ilceler set ilce_adi = replace(ilce_adi, 'i̇', 'i');
-update semtler set semt_adi = replace(semt_adi, 'i̇', 'i');
-update mahalleler set mahalle_adi = replace(mahalle_adi, 'i̇', 'i');
-```
-
-##### Bu sql komutlarını i harfini düzeltmek için yapıyoruz.
